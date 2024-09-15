@@ -1,6 +1,6 @@
 "use client"
 
-import { api } from "note/trpc/react"
+import { api } from "note/trpc/react";
 
 
 export function PostList() {
