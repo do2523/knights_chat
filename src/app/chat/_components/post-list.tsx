@@ -16,9 +16,13 @@ export function PostList() {
 
     return (
         <>
-        {data.map((post, i) => (
-            <div className="hover:text-black border rounded-full p-2 w-full hover:bg-blue-500" key={i}>{post.content}</div>
-        ))}
+        <ul className="left-0 w-full h-full"> 
+            {data.map((post, i) => (
+                <li>
+                    <div className="text-white p-2 pt-4 w-full hover:bg-slate-800" key={i}>{post.content}</div>
+                </li>
+            ))}
+        </ul>
         </>
     )
 }

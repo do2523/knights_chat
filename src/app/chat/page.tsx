@@ -12,14 +12,8 @@ export default async function Chat() {
                 Homepage
             </Link>
             <p>{session?.user.name}</p>
-            {/* This div will take the full height of the viewport and center its children */}
-            <div
-                className="flex justify-center items-center"
-                style={{ height: "100vh", flexDirection: "column" }}
-                >
-                <br />
+            <div className="h-full w-full left-0 bottom-0 flex flex-col-reverse">
                 <PostList />
-                
             </div>
         </div>
     );
