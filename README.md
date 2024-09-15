@@ -2,9 +2,15 @@
 
 ## TODO
 
-- [] Deploy (Vercel)
-- [] Set up User Info Page
-- [] Set up Chat
+- [x] Deploy (Vercel)
+- [x] Set up Chat Page
+- [x] Set up User Profile Page
+- [x] Add Tailwind CSS to Profile, Chat, and Homepage
+- [x] Set up PostgreSQL DB
+- [x] Adjust Schema
+- [x] Change Title to Knights-Chat and Replace Favicon
+
+
 
 
 
