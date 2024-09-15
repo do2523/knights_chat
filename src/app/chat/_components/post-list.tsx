@@ -19,7 +19,7 @@ export function PostList() {
         <ul className="left-0 w-full h-full"> 
             {data.map((post, i) => (
                 <li key={i}>
-                    <div className="text-white p-2 pt-4 w-full hover:bg-slate-800" key={i}>{post.content}</div>
+                    <div className="text-white p-2 pt-4 w-full hover:bg-slate-800 bg-black" key={i}>{post.content}</div>
                 </li>
             ))}
             <div className="m-2"></div>
