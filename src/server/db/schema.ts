@@ -24,9 +24,10 @@ export const posts = createTable(
   {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }),
-    createdById: varchar("created_by", { length: 255 })
+    userID: varchar("created_by", { length: 255 })
       .notNull()
       .references(() => users.id),
+    content: text("content"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -35,10 +36,15 @@ export const posts = createTable(
     ),
   },
   (example) => ({
-    createdByIdIdx: index("created_by_idx").on(example.createdById),
+    createdByIdIdx: index("created_by_idx").on(example.userID),
     nameIndex: index("name_idx").on(example.name),
   })
 );
+
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  user: one(users, { fields: [posts.userID], references: [users.id]}),
+}))
 
 export const users = createTable("user", {
   id: varchar("id", { length: 255 })
@@ -56,6 +62,7 @@ export const users = createTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
+  posts: many(posts),
 }));
 
 export const accounts = createTable(
