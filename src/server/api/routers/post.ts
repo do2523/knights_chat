@@ -14,26 +14,43 @@ export const postRouter = createTRPCRouter({
       return {
         greeting: `Hello ${input.text}`,
       };
-    }),
+  }),
+
+  all: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.db.query.posts.findMany();
+  }),
 
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      await ctx.db.insert(posts).values({
-        name: input.name,
-        createdById: ctx.session.user.id,
-      });
+  .input(
+    z.object({
+      content: z.string(),
     }),
-
-  getLatest: publicProcedure.query(async ({ ctx }) => {
-    const post = await ctx.db.query.posts.findFirst({
-      orderBy: (posts, { desc }) => [desc(posts.createdAt)],
-    });
-
-    return post ?? null;
+  )
+  .mutation(async ({ input, ctx }) => {
+    await ctx.db.insert(posts).values({
+      userID: ctx.session.user.id,
+      content: input.content,
+    })
   }),
 
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  // create: protectedProcedure
+  //   .input(z.object({ name: z.string().min(1) }))
+  //   .mutation(async ({ ctx, input }) => {
+  //     await ctx.db.insert(posts).values({
+  //       name: input.name,
+  //       createdById: ctx.session.user.id,
+  //     });
+  //   }),
+
+  // getLatest: publicProcedure.query(async ({ ctx }) => {
+  //   const post = await ctx.db.query.posts.findFirst({
+  //     orderBy: (posts, { desc }) => [desc(posts.createdAt)],
+  //   });
+
+  //   return post ?? null;
+  // }),
+
+  // getSecretMessage: protectedProcedure.query(() => {
+  //   return "you can now see this secret message!";
+  // }),
 });
