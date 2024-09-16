@@ -10,7 +10,7 @@ export default async function Sidebar() {
     const userProfileImage = session?.user.image?.toString();
 
     return(<div>
-        <div className="sticky top-0 left-0 bg-black h-screen w-16 m-0 flex flex-col">
+        <div className="relative top-0 left-0 bg-black h-screen w-16 m-0 flex flex-col">
             <SidebarIcon icon={<img src={userProfileImage}/>} href="/profile" />
         </div>
     </div>)

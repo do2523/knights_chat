@@ -4,7 +4,6 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "note/trpc/react";
-import Sidebar from "./_components/sidebar";
 
 export const metadata: Metadata = {
   title: "Knights-Chat",
@@ -18,11 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-          <div className="flex h-screen flex-row w-screen relative">
-              <Sidebar />
-              <div className="flex-grow relative">
-                <TRPCReactProvider>{children}</TRPCReactProvider>
-              </div>
+          <div className="flex-grow relative">
+            <TRPCReactProvider>{children}</TRPCReactProvider>
           </div>
       </body>
     </html>
