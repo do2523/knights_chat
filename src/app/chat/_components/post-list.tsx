@@ -15,15 +15,18 @@ export function PostList() {
     }
 
     return (
-        <>
-        <ul className="left-0 w-full h-full"> 
-            {data.map((post, i) => (
-                <li key={i}>
-                    <div className="text-white p-2 pt-4 w-full hover:bg-slate-800 bg-black" key={i}>{post.content}</div>
-                </li>
-            ))}
-            <div className="m-2"></div>
-        </ul>
-        </>
+        data.map((post, i) => {
+            return (
+            <li className="pt-4" key={i}>
+                <div className="flex flex-row text-white py-2 h-full w-full hover:bg-slate-800 bg-black" key={i}>
+                    <img src={post.user.image?.toString()} className="message-profile-picture" key={i}></img>
+
+                        <div className="flex flex-col w-full h-full">
+                            <span>{post.user.name}</span>
+                            <span>{post.content}</span>
+                        </div>
+                </div>
+            </li>)
+        })   
     )
 }

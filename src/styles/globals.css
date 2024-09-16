@@ -6,4 +6,8 @@
     .sidebar-icon {
         @apply relative flex items-center justify-center h-12 w-12 m-2 [&_*]:rounded-3xl [&_*]:hover:rounded-2xl [&_*]:transition-all [&_*]:ease-linear [&_*]:duration-150 [&_*]:cursor-pointer;
     }
+    
+    .message-profile-picture {
+        @apply flex left-1 mx-2 h-11 w-11 rounded-full;
+    }
 }
