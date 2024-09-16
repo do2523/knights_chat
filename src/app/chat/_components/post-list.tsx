@@ -15,15 +15,28 @@ export function PostList() {
     }
 
     return (
-        <>
-        <ul className="left-0 w-full h-full"> 
-            {data.map((post, i) => (
-                <li key={i}>
-                    <div className="text-white p-2 pt-4 w-full hover:bg-slate-800 bg-black" key={i}>{post.content}</div>
-                </li>
-            ))}
-            <div className="m-2"></div>
-        </ul>
-        </>
+        <div>
+        {data.map((post, i) => {
+            const time = post.createdAt.toLocaleTimeString();
+            const formattedTime = `${time.slice(0, -6)} ${time.slice(time.length -2, time.length)}`;
+
+            return (
+            <li className="pt-2" key={i}>
+                <div className="flex flex-row text-white h-full w-full hover:bg-slate-800 bg-black" key={i}>
+                    <div className="flex flex-col items-center justify-center mx-7 my-2">
+                        <img src={post.user.image?.toString()} className="flex h-10 w-10 rounded-full" key={i}></img>
+                        <span className="text-xs items-center justify-center whitespace-nowrap text-slate-300">{formattedTime}</span>
+                    </div>
+                    
+
+                    <div className="flex flex-col w-full justify-center">
+                        <span className="text-base">{post.user.name}</span>
+                        <span>{post.content}</span>
+                    </div>
+                </div>
+            </li>)
+        })}
+        <div className="my-4"></div>
+        </div>
     )
 }
