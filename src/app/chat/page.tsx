@@ -9,7 +9,7 @@ export default async function Chat() {
         <div>
             <TitleBar title="Main Chat"/>
             <p className="text-blue-400">Username: {session?.user.name}</p>
-            <div className="h-full w-full left-0 bottom-0 flex flex-col-reverse">
+            <div className="h-full w-full left-0 bottom-0 flex flex-col">
                 <PostList />
             </div>
         </div>
