@@ -10,6 +10,7 @@
 - [x] Adjust Schema
 - [x] Change Title to Knights-Chat and Replace Favicon
 - [x] Render the Homepage differently depending on if the user is Signed In or not
+- [x] Add Redirection to Prevent Unauthorized Access
 
 
 
