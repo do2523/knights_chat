@@ -15,7 +15,8 @@ export function PostList() {
     }
 
     return (
-        data.map((post, i) => {
+        <div>
+        {data.map((post, i) => {
             return (
             <li className="pt-4" key={i}>
                 <div className="flex flex-row text-white py-2 h-full w-full hover:bg-slate-800 bg-black" key={i}>
@@ -27,6 +28,8 @@ export function PostList() {
                         </div>
                 </div>
             </li>)
-        })   
+        })}
+        <div className="my-6"></div>
+        </div>
     )
 }
