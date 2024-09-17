@@ -46,6 +46,24 @@ export const postsRelations = relations(posts, ({ one }) => ({
   user: one(users, { fields: [posts.userID], references: [users.id]}),
 }))
 
+export const chats = createTable("chat", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at", {
+    mode: "date",
+    withTimezone: true,
+  }).default(sql`CURRENT_TIMESTAMP`).notNull(),
+  image: varchar("image", { length: 255 }),
+});
+
+export const chatRelations = relations(chats, ({ many }) => ({
+  user: many(users),
+  posts: many(posts),
+}));
+
 export const users = createTable("user", {
   id: varchar("id", { length: 255 })
     .notNull()
@@ -63,6 +81,7 @@ export const users = createTable("user", {
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
   posts: many(posts),
+  chats: many(chats),
 }));
 
 export const accounts = createTable(
