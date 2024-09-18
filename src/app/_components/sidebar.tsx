@@ -3,7 +3,6 @@ import { getServerAuthSession } from "note/server/auth";
 import SidebarChatIcons from "./sidebar-chat-icons";
 import { useState } from "react";
 import { BsFillHexagonFill } from "react-icons/bs";
-import ClientSidebarChatIcons from "./client-sidebar-chat-icons";
 import SidebarCreateChatIcon from "./sidebar-create-chat-icon";
 
 export const SidebarWidth = "w-16";
