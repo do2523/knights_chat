@@ -1,6 +1,4 @@
 import Link from "next/link";
-
-// import { LatestPost } from "note/app/_components/post";
 import { getServerAuthSession } from "note/server/auth";
 import { api, HydrateClient } from "note/trpc/server";
 
@@ -92,17 +90,6 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-          {/* <PostInput />
-          <PostList /> */}
-          {/* <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="/protected"
-              >
-              <h3 className="text-2xl font-bold">Will fix</h3>
-              <div className="text-lg">
-                Soon
-              </div>
-            </Link> */}
         </div>
       </main>
 

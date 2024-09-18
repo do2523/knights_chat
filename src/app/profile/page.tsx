@@ -1,6 +1,5 @@
 import Button from "../_components/button";
 import { ProfileComponent } from "./_components/user-profile";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation"; // For server-side redirects
 import { getServerAuthSession } from "note/server/auth";
 
