@@ -27,6 +27,8 @@ export const chatRouter = createTRPCRouter({
                 chatId: chat[0]?.chatId,
                 userId: session?.user.id,
             })
+
+            return chat[0]?.chatId;
         }),
     
     getById: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
