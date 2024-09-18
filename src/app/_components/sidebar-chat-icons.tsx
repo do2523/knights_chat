@@ -20,7 +20,10 @@ export default async function SidebarChatIcons() {
         <div>
             {chats?.map((chat, i) => {
                 return(
-                    <SidebarIcon icon={<BsFillHexagonFill />} href={`/chat/${chat.id}`} key={i} />
+                    <li key={i}>
+                        <SidebarIcon icon={<BsFillHexagonFill />} href={`/chat/${chat.id}`} />
+                    </li>
+                    
                 )
             })}
         </div>
