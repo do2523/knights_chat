@@ -27,6 +27,9 @@ export const posts = createTable(
     userID: varchar("created_by", { length: 255 })
       .notNull()
       .references(() => users.id),
+    chatID: varchar("created_in", { length: 255 })
+    .notNull()
+    .references(() => chats.id),
     content: text("content"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
@@ -44,6 +47,7 @@ export const posts = createTable(
 
 export const postsRelations = relations(posts, ({ one }) => ({
   user: one(users, { fields: [posts.userID], references: [users.id]}),
+  chat: one(chats, { fields: [posts.chatID], references: [chats.id]})
 }))
 
 export const chats = createTable("chat", {
