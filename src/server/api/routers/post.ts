@@ -28,14 +28,27 @@ export const postRouter = createTRPCRouter({
   .input(
     z.object({
       content: z.string(),
+      created_in: z.string(),
     }),
   )
   .mutation(async ({ input, ctx }) => {
     await ctx.db.insert(posts).values({
       userID: ctx.session.user.id,
       content: input.content,
+      chatID: input.created_in,
     })
   }),
+
+  getAllByChatId: publicProcedure
+    .input(z.string()).query(async ({ ctx, input }) => {
+      return await ctx.db.query.posts.findMany({
+        where: (chat, { eq }) => eq(chat?.chatID, input),
+
+        with: {
+          user: true
+        }
+      })
+    }),
 
   // create: protectedProcedure
   //   .input(z.object({ name: z.string().min(1) }))

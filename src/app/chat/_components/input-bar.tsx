@@ -3,19 +3,21 @@
 import { useState } from "react";
 import { api } from "../../../trpc/react"
 
-export function InputBar() {
+export function InputBar({ chat }: { chat: string }) {
     const [text, setText] = useState("");
     
     const utils = api.useUtils();
     const createPost = api.post.create.useMutation({
         onSuccess: async () => {
-            await utils.post.all.invalidate();
+            await utils.post.getAllByChatId.invalidate();
         },
     });
 
+    console.log("inputbar: " + chat);
+
     const submitPost = () => {
         if(text.trim() != "") {
-            createPost.mutate({ content: text });
+            createPost.mutate({ content: text, created_in: chat });
             setText("")
         }
     }
