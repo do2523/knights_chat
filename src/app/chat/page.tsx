@@ -11,7 +11,6 @@ export default async function Chat() {
         return (redirect("/api/auth/callback/discord"));
     }
     else {
-
         return (
             <div className="relative flex flex-col h-full w-full bg-black">
                 <TitleBar title="Main Chat"/>

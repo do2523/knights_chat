@@ -1,8 +1,6 @@
-import { SidebarIcon, SidebarImageIcon } from "./sidebar-icons";
+import { SidebarImageIcon } from "./sidebar-icons";
 import { getServerAuthSession } from "note/server/auth";
 import SidebarChatIcons from "./sidebar-chat-icons";
-import { useState } from "react";
-import { BsFillHexagonFill } from "react-icons/bs";
 import SidebarCreateChatIcon from "./sidebar-create-chat-icon";
 
 export const SidebarWidth = "w-16";
