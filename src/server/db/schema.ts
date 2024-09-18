@@ -28,7 +28,6 @@ export const posts = createTable(
       .notNull()
       .references(() => users.id),
     chatID: varchar("created_in", { length: 255 })
-    .notNull()
     .references(() => chats.id),
     content: text("content"),
     createdAt: timestamp("created_at", { withTimezone: true })
