@@ -1,30 +1,30 @@
-"use client"
+// "use client"
 
-import { useState } from "react";
-import { api } from "../../../trpc/react"
+// import { useState } from "react";
+// import { api } from "../../../trpc/react"
 
-export function RemoveMessage() {
-    const [text, setText] = useState("");
+// export function RemoveMessage() {
+//     const [text, setText] = useState("");
     
-    const utils = api.useUtils();
-    const createPost = api.post.create.useMutation({
-        onSuccess: async () => {
-            await utils.post.all.invalidate();
-        },
-    });
+//     const utils = api.useUtils();
+//     const createPost = api.post.create.useMutation({
+//         onSuccess: async () => {
+//             await utils.post.all.invalidate();
+//         },
+//     });
 
-    const submitPost = () => {
-        if(text.trim() != "") {
-            createPost.mutate({ content: text });
-            setText("")
-        }
-    }
+//     const submitPost = () => {
+//         if(text.trim() != "") {
+//             // createPost.mutate({ content: text });
+//             setText("")
+//         }
+//     }
 
-    return (
-        <div className="">
-            <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Send a message" className="p-1 w-full" type="text" onKeyDown={(keyDown) => {
-                if(keyDown.key === "Enter") { submitPost() }}}/>
-            <button onClick={() => {submitPost()}} className="bg-black p-5 text-white">Submit</button>
-        </div>
-    )
-}
+//     return (
+//         <div className="">
+//             <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Send a message" className="p-1 w-full" type="text" onKeyDown={(keyDown) => {
+//                 if(keyDown.key === "Enter") { submitPost() }}}/>
+//             <button onClick={() => {submitPost()}} className="bg-black p-5 text-white">Submit</button>
+//         </div>
+//     )
+// }
