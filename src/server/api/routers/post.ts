@@ -28,12 +28,14 @@ export const postRouter = createTRPCRouter({
   .input(
     z.object({
       content: z.string(),
+      created_in: z.string(),
     }),
   )
   .mutation(async ({ input, ctx }) => {
     await ctx.db.insert(posts).values({
       userID: ctx.session.user.id,
       content: input.content,
+      chatID: input.created_in,
     })
   }),
 

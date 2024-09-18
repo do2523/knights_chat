@@ -10,7 +10,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <div className="overflow-y-auto overflow-x-hidden h-full">   
                     {children}
                 </div>
-                <InputBar />
             </div>
         </div>
     )
