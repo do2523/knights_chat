@@ -60,7 +60,7 @@ export const chats = createTable("chat", {
 });
 
 export const chatRelations = relations(chats, ({ many }) => ({
-  user: many(users),
+  usersToChats: many(usersToChats),
   posts: many(posts),
 }));
 
@@ -81,7 +81,31 @@ export const users = createTable("user", {
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
   posts: many(posts),
-  chats: many(chats),
+  usersToChats: many(usersToChats),
+}));
+
+export const usersToChats = createTable('users_to_chats', {
+    userId: varchar('user_id', { length: 255 })
+      .notNull()
+      .references(() => users.id),
+    chatId: varchar('chat_id', { length: 255 })
+      .notNull()
+      .references(() => chats.id)
+  },
+  (table) =>({
+    pk: primaryKey({ columns: [ table.userId, table.chatId] }),
+  }),
+);
+
+export const usersToChatsRelations = relations(usersToChats, ({ one }) => ({
+  chat: one(chats, {
+    fields: [usersToChats.chatId],
+    references: [chats.id],
+  }),
+  user: one(users, {
+    fields: [usersToChats.userId],
+    references: [users.id],
+  }),
 }));
 
 export const accounts = createTable(

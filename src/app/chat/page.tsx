@@ -5,6 +5,7 @@ import TitleBar from "./_components/title-bar";
 import { authOptions } from "note/server/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation"; // For server-side redirects
+import { api } from "note/trpc/server";
 
 
 export default async function Chat() {
@@ -13,6 +14,7 @@ export default async function Chat() {
         return (redirect("/api/auth/callback/discord"));
     }
     else {
+
         return (
             <div>
                 <TitleBar title="Main Chat"/>
