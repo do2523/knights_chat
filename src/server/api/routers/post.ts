@@ -39,8 +39,12 @@ export const postRouter = createTRPCRouter({
 
   getAllByChatId: publicProcedure
     .input(z.string()).query(async ({ ctx, input }) => {
-      await ctx.db.query.posts.findMany({
+      return await ctx.db.query.posts.findMany({
         where: (chat, { eq }) => eq(chat?.chatID, input),
+
+        with: {
+          user: true
+        }
       })
     }),
 

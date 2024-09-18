@@ -3,8 +3,8 @@
 import { api } from "note/trpc/react";
 
 
-export function PostList() {
-    const { data, isPending, error } = api.post.all.useQuery();
+export function PostList({ chat }: { chat: string }) {
+    const { data, isPending, error } = api.post.getAllByChatId.useQuery(chat);
 	console.log("Hello Fork");
     
     if (isPending){

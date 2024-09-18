@@ -33,7 +33,7 @@ export default async function Page({ params }: { params: { chat: string} }) {
             <TitleBar title={chat?.name ? chat?.name : ""}/>
             <p className="text-blue-400">Username: {session?.user.name}</p>
             <div className="h-full w-full left-0 bottom-0 flex flex-col">
-                <PostList />
+                <PostList chat={params.chat} />
             </div>
         </div>
     )
