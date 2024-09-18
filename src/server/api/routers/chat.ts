@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { chats, usersToChats } from "note/server/db/schema";
 import { getServerAuthSession } from "note/server/auth";
 
@@ -27,5 +27,20 @@ export const chatRouter = createTRPCRouter({
                 chatId: chat[0]?.chatId,
                 userId: session?.user.id,
             })
+        }),
+    
+    getById: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
+        const chat = await ctx.db.query.chats.findFirst({
+            where: (chat, { eq }) => eq(chat?.id, input),
+            with: {
+                usersToChats: {
+                    with: {
+                        user: true
+                    }
+                }
+            }
         })
+
+        return chat;
+    })
 })
