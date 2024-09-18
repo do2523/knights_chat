@@ -1,30 +1,41 @@
-"use client"
+// "use client";
 
-import { useState } from "react";
-import { api } from "../../../trpc/react"
+// import { api } from "../../../trpc/react";
 
-export function RemoveMessage() {
-    const [text, setText] = useState("");
-    
-    const utils = api.useUtils();
-    const createPost = api.post.create.useMutation({
-        onSuccess: async () => {
-            await utils.post.all.invalidate();
-        },
-    });
+// export default function DeleteMessagePage() {
+//     const utils = api.useUtils();
 
-    const submitPost = () => {
-        if(text.trim() != "") {
-            createPost.mutate({ content: text });
-            setText("")
-        }
-    }
+//     const deletePost = api.post.delete.useMutation({
+//         onSuccess: async () => {
+//             await utils.post.all.invalidate();
+//         },
+//     });
 
-    return (
-        <div className="">
-            <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Send a message" className="p-1 w-full" type="text" onKeyDown={(keyDown) => {
-                if(keyDown.key === "Enter") { submitPost() }}}/>
-            <button onClick={() => {submitPost()}} className="bg-black p-5 text-white">Submit</button>
-        </div>
-    )
-}
+//     const handleDelete = (postId) => {
+//         deletePost.mutate({ id: postId });
+//     };
+
+//     const { data: posts } = api.post.all.useQuery();
+
+//     return (
+//         <div className="p-5">
+//             <h1 className="text-xl font-bold mb-4">Delete Messages</h1>
+//             <div>
+//                 {posts?.map((post) => (
+//                     <div
+//                         key={post.id}
+//                         className="flex justify-between items-center p-2 border-b"
+//                     >
+//                         <span>{post.content}</span>
+//                         <button
+//                             onClick={() => handleDelete(post.id)}
+//                             className="text-red-500"
+//                         >
+//                             Delete
+//                         </button>
+//                     </div>
+//                 ))}
+//             </div>
+//         </div>
+//     );
+// }
