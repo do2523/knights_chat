@@ -17,15 +17,15 @@ export default async function SidebarChatIcons() {
       );
 
     return(
-        <div>
+        <ul>
             {chats?.map((chat, i) => {
                 return(
-                    <li key={i}>
+                    <li>
                         <SidebarIcon icon={<BsFillHexagonFill />} href={`/chat/${chat.id}`} />
                     </li>
                     
                 )
             })}
-        </div>
+        </ul>
     )
 }
