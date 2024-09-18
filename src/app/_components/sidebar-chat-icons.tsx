@@ -14,7 +14,8 @@ export default async function SidebarChatIcons() {
 
     const chats = user?.usersToChats.map(
         ({ chat }) => chat,
-      );
+      ).sort((a,b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+      //chats?.map(chat => console.log(chat.createdAt));
 
     return(
         <div>
