@@ -13,14 +13,18 @@ export default async function SidebarChatIcons() {
     const user = await api.user.getById(id);
 
     const chats = user?.usersToChats.map(
-        ({ chat }) => chat,
-      );
-
+        ({ chat }) => {
+            return {
+                ...chat,
+                key: chat.id,
+            }
+        });
+    
     return(
         <ul>
             {chats?.map((chat, i) => {
                 return(
-                    <li>
+                    <li key={chat.key}>
                         <SidebarIcon icon={<BsFillHexagonFill />} href={`/chat/${chat.id}`} />
                     </li>
                     
